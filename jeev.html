@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Jeev | InAmigos Foundation</title>
+  
+  <!-- Import Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    /* Premium subpage layout variables & overrides */
+    :root {
+      --glow: var(--glow-jeev);
+      --accent: #f43f5e;
+      --accent-glow: rgba(244, 63, 94, 0.3);
+    }
+    
+    .detail-container {
+      max-width: 950px;
+      margin: 140px auto 80px;
+      background: var(--glass-bg);
+      border: 1px solid rgba(244, 63, 94, 0.25);
+      border-radius: 35px;
+      padding: 50px;
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      box-shadow: var(--glass-shadow), 0 0 30px var(--glow);
+      position: relative;
+      overflow: hidden;
+      z-index: 2;
+    }
+    
+    .detail-header {
+      text-align: center;
+      margin-bottom: 45px;
+      position: relative;
+    }
+    
+    .detail-emoji {
+      font-size: 80px;
+      margin-bottom: 20px;
+      display: inline-block;
+      filter: drop-shadow(0 10px 20px var(--accent-glow));
+      animation: floatIcon 4s infinite ease-in-out;
+    }
+    
+    .detail-title {
+      font-size: 52px;
+      background: linear-gradient(135deg, #fff, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+      font-weight: 800;
+    }
+    
+    .detail-subtitle {
+      color: var(--text-secondary);
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    
+    .detail-content h3 {
+      font-size: 26px;
+      color: #fff;
+      margin-top: 40px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid rgba(244, 63, 94, 0.15);
+      padding-bottom: 10px;
+    }
+    
+    .detail-content p {
+      color: var(--text-secondary);
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 22px;
+    }
+    
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 35px;
+    }
+    
+    .detail-box {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 24px;
+      padding: 30px;
+      transition: all 0.3s ease;
+    }
+    
+    .detail-box:hover {
+      background: rgba(244, 63, 94, 0.04);
+      border-color: rgba(244, 63, 94, 0.3);
+      transform: translateY(-4px);
+    }
+    
+    .detail-box h4 {
+      color: #fff;
+      font-size: 20px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .back-btn-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 24px;
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+    
+    .back-btn-header:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 5px 20px var(--accent-glow);
+      transform: translateX(-4px);
+    }
+    
+    .stats-row {
+      display: flex;
+      gap: 24px;
+      margin: 40px 0;
+    }
+    
+    .stat-badge {
+      flex: 1;
+      text-align: center;
+      padding: 24px;
+      background: rgba(244, 63, 94, 0.05);
+      border: 1px solid rgba(244, 63, 94, 0.2);
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .stat-badge:hover {
+      background: rgba(244, 63, 94, 0.08);
+      transform: scale(1.03);
+    }
+    
+    .stat-badge h5 {
+      font-size: 36px;
+      color: var(--accent);
+      margin-bottom: 6px;
+      text-shadow: 0 0 15px var(--accent-glow);
+    }
+    
+    .stat-badge p {
+      font-size: 14px !important;
+      margin-bottom: 0 !important;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+    
+    .styled-ul {
+      list-style: none;
+    }
+    
+    .styled-ul li {
+      margin: 12px 0;
+      color: var(--text-secondary);
+      position: relative;
+      padding-left: 28px;
+      font-size: 15px;
+    }
+    
+    .styled-ul li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+    }
+    
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    
+    @media (max-width: 768px) {
+      .detail-container {
+        padding: 35px 20px;
+        margin-top: 140px;
+        border-radius: 25px;
+      }
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
+      .stats-row {
+        flex-direction: column;
+      }
+      .detail-title {
+        font-size: 38px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="header-top-area">
+    <div class="site-info">
+      <a href="mailto:support@inamigosfoundation.org.in"><i class="fa fa-envelope"></i> support@inamigosfoundation.org.in</a>
+    </div>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/inamigos.inamigos" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="https://www.instagram.com/inamigos/" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header>
+    <div class="logo-container">
+      <img src="inamigos_logo.png" alt="InAmigos Foundation Logo" class="logo-img-src" />
+      <h2>InAmigos <span class="logo-sub">Foundation</span></h2>
+    </div>
+    <nav>
+      <a href="index.html#home">Home</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#impact">Impact</a>
+      <a href="index.html#join" class="join-nav-btn">Join Us</a>
+    </nav>
+  </header>
+
+
+
+  <!-- Detailed Main Content Section -->
+  <main class="detail-container">
+    <div class="detail-header">
+      <span class="detail-emoji" role="img" aria-label="Paw Prints">🐾</span>
+      <p class="detail-subtitle">InAmigos Animal Welfare</p>
+      <h1 class="detail-title">Project Jeev</h1>
+    </div>
+
+    <div class="detail-content">
+      <p>
+        <strong>Project Jeev</strong> is InAmigos Foundation's specialized animal welfare and rescue wing. Built on the premise of coexistence and compassion, our mission is to ensure that stray animals are fed, sheltered from harsh climates, treated for injuries, and protected from abuse. Through community awareness and street-level actions, Project Jeev acts as a voice for the voiceless.
+      </p>
+
+      <div class="stats-row">
+        <div class="stat-badge">
+          <h5>50+</h5>
+          <p>Animals Fed Daily</p>
+        </div>
+        <div class="stat-badge">
+          <h5>150+</h5>
+          <p>Medical Rescues Made</p>
+        </div>
+        <div class="stat-badge">
+          <h5>80+</h5>
+          <p>Reflective Collars Placed</p>
+        </div>
+      </div>
+
+      <h3>Core Objectives</h3>
+      <p>
+        Street animals, primarily stray dogs, cats, and cows, face severe dehydration, malnutrition, and road traffic accident risks daily. Project Jeev stands as a continuous community protection system to give these creatures a safe and comfortable environment.
+      </p>
+      
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4><span>🍖</span> Daily Feeding Initiatives</h4>
+          <p>Deploying teams to feed street dogs, stray cattle, and birds with clean water and fresh, nutritious, pet-friendly food daily.</p>
+        </div>
+        <div class="detail-box">
+          <h4><span>🏥</span> Rescue & Medical Relief</h4>
+          <p>Collaborating with local veterinarians to treat injured stray animals, perform dressing on open wounds, and assist in critical cases.</p>
+        </div>
+        <div class="detail-box">
+          <h4><span>📦</span> Makeshift Shelters</h4>
+          <p>Constructing simple water-resistant shelters and placing soft gunny-sack bedding to guard stray dogs from freezing temperatures and heavy rains.</p>
+        </div>
+        <div class="detail-box">
+          <h4><span>🎗️</span> Reflective Collar Drives</h4>
+          <p>Placing custom reflective neon collars on stray animals to enhance their visibility to fast-moving vehicles at night and prevent accidents.</p>
+        </div>
+      </div>
+
+      <h3>How Interns and Volunteers Contribute</h3>
+      <p>
+        Animal welfare requires dedicated street action and soft, caring hearts. Here is how you can support Project Jeev:
+      </p>
+      <ul class="styled-ul">
+        <li>Lead local feeding drives in your neighborhood using custom food schedules.</li>
+        <li>Coordinate with animal hospitals to report, transport, or treat injured stray dogs.</li>
+        <li>Initiate water-bowl distribution campaigns by placing clay bowls outside houses during summers.</li>
+        <li>Promote stray animal adoption campaigns instead of purchasing breeds.</li>
+      </ul>
+      
+      <div style="text-align: center; margin-top: 50px;">
+        <a href="index.html#join" class="btn btn-primary" style="background: linear-gradient(135deg, var(--accent), #e11d48);">Volunteer for Project Jeev</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer style="padding: 30px; text-align: center; font-size: 13px;">
+    <p class="copyright">© 2026 InAmigos Foundation Awareness. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>

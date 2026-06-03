@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Vikas | InAmigos Foundation</title>
+  
+  <!-- Import Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    /* Premium subpage layout variables & overrides */
+    :root {
+      --glow: var(--glow-vikas);
+      --accent: #22d3ee;
+      --accent-glow: rgba(34, 211, 238, 0.3);
+    }
+    
+    .detail-container {
+      max-width: 950px;
+      margin: 140px auto 80px;
+      background: var(--glass-bg);
+      border: 1px solid rgba(34, 211, 238, 0.25);
+      border-radius: 35px;
+      padding: 50px;
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      box-shadow: var(--glass-shadow), 0 0 30px var(--glow);
+      position: relative;
+      overflow: hidden;
+      z-index: 2;
+    }
+    
+    .detail-header {
+      text-align: center;
+      margin-bottom: 45px;
+      position: relative;
+    }
+    
+    .detail-emoji {
+      font-size: 80px;
+      margin-bottom: 20px;
+      display: inline-block;
+      filter: drop-shadow(0 10px 20px var(--accent-glow));
+      animation: floatIcon 4s infinite ease-in-out;
+    }
+    
+    .detail-title {
+      font-size: 52px;
+      background: linear-gradient(135deg, #fff, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+      font-weight: 800;
+    }
+    
+    .detail-subtitle {
+      color: var(--text-secondary);
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    
+    .detail-content h3 {
+      font-size: 26px;
+      color: #fff;
+      margin-top: 40px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid rgba(34, 211, 238, 0.15);
+      padding-bottom: 10px;
+    }
+    
+    .detail-content p {
+      color: var(--text-secondary);
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 22px;
+    }
+    
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 35px;
+    }
+    
+    .detail-box {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 24px;
+      padding: 30px;
+      transition: all 0.3s ease;
+    }
+    
+    .detail-box:hover {
+      background: rgba(34, 211, 238, 0.04);
+      border-color: rgba(34, 211, 238, 0.3);
+      transform: translateY(-4px);
+    }
+    
+    .detail-box h4 {
+      color: #fff;
+      font-size: 20px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .back-btn-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 24px;
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+    
+    .back-btn-header:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 5px 20px var(--accent-glow);
+      transform: translateX(-4px);
+    }
+    
+    .stats-row {
+      display: flex;
+      gap: 24px;
+      margin: 40px 0;
+    }
+    
+    .stat-badge {
+      flex: 1;
+      text-align: center;
+      padding: 24px;
+      background: rgba(34, 211, 238, 0.05);
+      border: 1px solid rgba(34, 211, 238, 0.2);
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .stat-badge:hover {
+      background: rgba(34, 211, 238, 0.08);
+      transform: scale(1.03);
+    }
+    
+    .stat-badge h5 {
+      font-size: 36px;
+      color: var(--accent);
+      margin-bottom: 6px;
+      text-shadow: 0 0 15px var(--accent-glow);
+    }
+    
+    .stat-badge p {
+      font-size: 14px !important;
+      margin-bottom: 0 !important;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+    
+    .styled-ul {
+      list-style: none;
+    }
+    
+    .styled-ul li {
+      margin: 12px 0;
+      color: var(--text-secondary);
+      position: relative;
+      padding-left: 28px;
+      font-size: 15px;
+    }
+    
+    .styled-ul li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+    }
+    
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    
+    @media (max-width: 768px) {
+      .detail-container {
+        padding: 35px 20px;
+        margin-top: 140px;
+        border-radius: 25px;
+      }
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
+      .stats-row {
+        flex-direction: column;
+      }
+      .detail-title {
+        font-size: 38px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="header-top-area">
+    <div class="site-info">
+      <a href="mailto:support@inamigosfoundation.org.in"><i class="fa fa-envelope"></i> support@inamigosfoundation.org.in</a>
+    </div>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/inamigos.inamigos" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="https://www.instagram.com/inamigos/" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header>
+    <div class="logo-container">
+      <img src="inamigos_logo.png" alt="InAmigos Foundation Logo" class="logo-img-src" />
+      <h2>InAmigos <span class="logo-sub">Foundation</span></h2>
+    </div>
+    <nav>
+      <a href="index.html#home">Home</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#impact">Impact</a>
+      <a href="index.html#join" class="join-nav-btn">Join Us</a>
+    </nav>
+  </header>
+
+
+
+  <!-- Detailed Main Content Section -->
+  <main class="detail-container">
+    <div class="detail-header">
+      <span class="detail-emoji" role="img" aria-label="Sparkles">✨</span>
+      <p class="detail-subtitle">InAmigos Youth Development</p>
+      <h1 class="detail-title">Project Vikas</h1>
+    </div>
+
+    <div class="detail-content">
+      <p>
+        <strong>Project Vikas</strong> is the primary youth skill building, internship, and professional development engine of InAmigos Foundation. Focused on bridging the gap between collegiate education and actual industry needs, this division has trained and supported over 30,000 interns nationwide. We supply training inside digital, administrative, and creative roles to build future-ready professionals.
+      </p>
+
+      <div class="stats-row">
+        <div class="stat-badge">
+          <h5>30,000+</h5>
+          <p>Interns Graduated</p>
+        </div>
+        <div class="stat-badge">
+          <h5>1,000+</h5>
+          <p>Active Work Opportunities</p>
+        </div>
+        <div class="stat-badge">
+          <h5>10+</h5>
+          <p>Skill Domain Specializations</p>
+        </div>
+      </div>
+
+      <h3>Core Objectives</h3>
+      <p>
+        Real-world experience is the single greatest asset for a launching career. Project Vikas gives students and fresh graduates a robust corporate structure to practice skills, learn from senior leaders, and lead impactful teams.
+      </p>
+      
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4><span>📈</span> Business & Digital Marketing</h4>
+          <p>Providing hands-on practice in SEO optimization, graphic design, content writing, copywriting, and social media brand growth.</p>
+        </div>
+        <div class="detail-box">
+          <h4><span>👩‍💻</span> HR Operations & Management</h4>
+          <p>Giving students experience in corporate recruiting, team management, scheduling, talent acquisition, and basic leadership dynamics.</p>
+        </div>
+        <div class="detail-box">
+          <h4><span>💰</span> Corporate Finance & Fundraising</h4>
+          <p>Training in budget planning, financial calculations, corporate social responsibility (CSR) strategy, and donor relationship building.</p>
+        </div>
+        <div class="detail-box">
+          <h4><span>📊</span> Research & Social Data Operations</h4>
+          <p>Analyzing ground-level welfare data, generating reports on campaign metrics, and carrying out deep target demographic reviews.</p>
+        </div>
+      </div>
+
+      <h3>How Interns and Volunteers Contribute</h3>
+      <p>
+        Project Vikas is our primary recruitment gateway for corporate talent. When joining our internship family, you will:
+      </p>
+      <ul class="styled-ul">
+        <li>Work directly on ongoing live campaigns under industry leaders' mentorship.</li>
+        <li>Participate in structured, interactive weekly skill workshops and Q&A sessions.</li>
+        <li>Lead project departments and gain real leadership, management, and collaborative skills.</li>
+        <li>Earn recognized corporate work certifications, recommendation letters, and career references.</li>
+      </ul>
+      
+      <div style="text-align: center; margin-top: 50px;">
+        <a href="index.html#join" class="btn btn-primary" style="background: linear-gradient(135deg, var(--accent), #0891b2);">Apply for Project Vikas Internship</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer style="padding: 30px; text-align: center; font-size: 13px;">
+    <p class="copyright">© 2026 InAmigos Foundation Awareness. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
