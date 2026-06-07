@@ -1,0 +1,12 @@
+{
+  "name": "inamigos",
+  "version": "1.0.0",
+  "description": "InAmigos Foundation static website",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'Static site build successful!'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
