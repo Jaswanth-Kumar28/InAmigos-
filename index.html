@@ -126,6 +126,23 @@
       }
     }
 
+    /* Mobile Text Scaling Overrides */
+    @media (max-width: 768px) {
+      .hero-text h1 {
+        font-size: 36px !important;
+      }
+      .hero-text p {
+        font-size: 16px !important;
+        line-height: 1.6 !important;
+        margin-bottom: 24px !important;
+      }
+    }
+    @media (max-width: 480px) {
+      .hero-text h1 {
+        font-size: 28px !important;
+      }
+    }
+
     /* Titles: Main title and section title distinct custom colors */
     .projects h2,
     .impact h2,
@@ -375,23 +392,19 @@
 
     <div class="stats">
       <div class="stat-card">
-        <div class="stat-icon-wrapper">👥</div>
-        <h3>200+</h3>
+        <h3>🤝 200+</h3>
         <p>Active Volunteers</p>
       </div>
       <div class="stat-card">
-        <div class="stat-icon-wrapper">📍</div>
-        <h3>28</h3>
+        <h3>📍 28</h3>
         <p>States Reached</p>
       </div>
       <div class="stat-card">
-        <div class="stat-icon-wrapper">❤️</div>
-        <h3>6</h3>
+        <h3>❤️ 6</h3>
         <p>Core Causes</p>
       </div>
       <div class="stat-card">
-        <div class="stat-icon-wrapper">🎁</div>
-        <h3>50,000+</h3>
+        <h3>🎁 50,000+</h3>
         <p>Beneficiaries</p>
       </div>
     </div>
@@ -456,11 +469,7 @@
       <div class="modal-body">
         <div class="modal-success-icon">🎉</div>
         <h3>Application Received!</h3>
-        <p>Thank you for reaching out to us.</p>
-        <div class="modal-subtext">
-          We have received your request to join as a <strong id="modalRole">Volunteer</strong>. Our team will review
-          your application and contact you soon at <strong id="modalEmail">your email</strong>.
-        </div>
+        <p>We have received your request. Our team will review your application and contact you soon.</p>
         <button class="btn btn-primary" id="modalOkBtn">Great, thank you!</button>
       </div>
     </div>
@@ -468,11 +477,9 @@
 
   <!-- Footer -->
   <footer>
-    <div class="footer-hashtags">
-      #InAmigos #ProjectSeva #ProjectBachpanshala #ProjectJeev #ProjectUdaan #ProjectPrakriti #ProjectVikas
-    </div>
-    <div class="footer-divider"></div>
-    <p class="copyright">© 2026 InAmigos Foundation Awareness. All Rights Reserved.</p>
+    <p>© 2026 InAmigos Foundation. All Rights Reserved.</p>
+    <p>Email: support@inamigosfoundation.org.in</p>
+    <p>#InAmigos #SocialImpact #VolunteerForChange</p>
   </footer>
 
   <script>
@@ -481,22 +488,9 @@
     const successModal = document.getElementById('successModal');
     const closeModal = document.getElementById('closeModal');
     const modalOkBtn = document.getElementById('modalOkBtn');
-    const modalRole = document.getElementById('modalRole');
-    const modalEmail = document.getElementById('modalEmail');
 
     joinForm.addEventListener('submit', function (e) {
       e.preventDefault();
-
-      const email = document.getElementById('emailAddress').value;
-      const role = document.getElementById('roleInterest').value;
-
-      let roleText = 'Volunteer';
-      if (role === 'intern') roleText = 'Intern';
-      else if (role === 'supporter') roleText = 'Supporter';
-
-      modalEmail.textContent = email;
-      modalRole.textContent = roleText;
-
       successModal.classList.add('active');
       joinForm.reset();
     });

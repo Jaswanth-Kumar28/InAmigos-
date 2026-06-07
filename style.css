@@ -48,6 +48,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 85px;
   scrollbar-width: thin;
   scrollbar-color: var(--primary) var(--bg-main);
   background: #222740 !important;
@@ -183,10 +184,7 @@ h1, h2, h3, h4 {
   color: white;
   font-size: 13px;
   font-weight: 500;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: relative;
   z-index: 101;
   display: flex;
   justify-content: space-between;
@@ -219,8 +217,8 @@ header {
   width: 100%;
   max-width: 100%;
   padding: 15px 8%;
-  position: fixed;
-  top: 35px; /* right below the top bar */
+  position: sticky;
+  top: 0;
   left: 0;
   transform: none;
   z-index: 100;
@@ -335,7 +333,7 @@ section {
 /* --- Hero Section --- */
 .hero {
   min-height: 100vh;
-  padding-top: 180px;
+  padding-top: 100px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -529,7 +527,7 @@ section {
   background: var(--bg-card);
   border: 1px solid rgba(255, 255, 255, 0.05);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
   position: relative;
   overflow: hidden;
   text-align: left;
@@ -627,10 +625,10 @@ section {
 .tag-vikas { background: rgba(34, 211, 238, 0.1); color: #22d3ee; border: 1px solid rgba(34, 211, 238, 0.2); }
 
 .project-card:hover {
-  transform: translateY(-12px);
+  transform: translateY(-8px);
   background: var(--bg-card-hover);
   border-color: rgba(94, 234, 212, 0.35);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 30px var(--glow);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), 0 0 20px var(--glow);
 }
 
 .project-card:hover h3 {
@@ -862,11 +860,16 @@ section {
 
 /* --- Footer Section --- */
 footer {
-  padding: 60px 8% 40px;
+  padding: 40px 8%;
   text-align: center;
   background: #010606;
   border-top: 1px solid rgba(94, 234, 212, 0.1);
   color: var(--text-secondary);
+}
+
+footer p {
+  margin: 6px 0;
+  font-size: 14px;
 }
 
 .footer-hashtags {
@@ -1034,35 +1037,60 @@ footer {
 
 @media (max-width: 768px) {
   section {
-    padding: 100px 6% 60px;
+    padding: 80px 6% 40px;
   }
   
   header {
+    position: sticky;
+    top: 10px;
     flex-direction: column;
-    border-radius: 30px;
-    padding: 18px 24px;
-    gap: 16px;
-    top: 15px;
+    border-radius: 20px;
+    padding: 10px 15px;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  }
+  
+  .logo-img-src {
+    height: 32px;
+    width: 32px;
+  }
+  
+  header h2 {
+    font-size: 16px;
   }
   
   nav {
     flex-wrap: wrap;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
   }
   
   nav a {
     margin: 0;
-    padding: 6px 12px;
-    font-size: 13px;
+    padding: 4px 8px;
+    font-size: 12px;
   }
 
   .hero {
-    padding-top: 220px;
+    padding-top: 100px;
+    flex-direction: column;
+    gap: 30px;
   }
 
   .hero-text h1 {
-    font-size: 44px;
+    font-size: 36px !important;
+  }
+  
+  .hero-text p {
+    font-size: 15px !important;
+    margin-bottom: 24px;
+  }
+
+  .hero-image-wrapper {
+    width: 280px;
+    height: 280px;
+    margin: 0 auto;
+    border-radius: 24px;
   }
 
   .project-grid {
@@ -1084,21 +1112,42 @@ footer {
 }
 
 @media (max-width: 480px) {
+  header {
+    padding: 8px 10px;
+    gap: 6px;
+    border-radius: 12px;
+    top: 5px;
+  }
+
+  header h2 {
+    font-size: 14px;
+  }
+
+  nav a {
+    padding: 3px 6px;
+    font-size: 11px;
+  }
+
   .hero-text h1 {
-    font-size: 34px;
+    font-size: 28px !important;
+  }
+
+  .hero-image-wrapper {
+    width: 240px;
+    height: 240px;
   }
 
   .rotating-card {
-    width: 250px;
-    height: 250px;
+    width: 220px;
+    height: 220px;
   }
 
   .rotating-card h3 {
-    font-size: 26px;
+    font-size: 22px;
   }
 
   .rotating-card p {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .stats div {
